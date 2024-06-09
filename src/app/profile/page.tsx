@@ -14,13 +14,14 @@ const Profile = () => {
       </div>
     );
   if (error) return <div>{error?.message}</div>;
-  // console.log("user", user);
 
   return (
     user && (
       <div className="flex items-center gap-2">
         <Avatar size="sm" src={user.picture ?? undefined} />
-        <p className="text-md w-14 truncate text-zinc-600">{user.name}</p>
+        <p className="text-md w-14 truncate text-black dark:text-white">
+          {user.name}
+        </p>
       </div>
     )
   );

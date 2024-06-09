@@ -3,9 +3,10 @@
 import Link from "next/link";
 import { ThemeSwitcher } from "./ThemeSwitcher";
 import Profile from "@/app/profile/page";
+import { useUser } from "@auth0/nextjs-auth0/client";
 
 const Navbar = () => {
-  console.log("rendered");
+  const { user, error, isLoading } = useUser();
 
   return (
     <div className="bg-slate-50 px-2 dark:bg-black dark:text-white">
@@ -22,21 +23,27 @@ const Navbar = () => {
           </Link>
         </li>
 
-        <li className="flex-1">
-          <Link href={`/api/auth/login`}>
-            <span>Log in</span>
-          </Link>
-        </li>
+        {!user && (
+          <li className="flex-1">
+            <Link href={`/api/auth/login`}>
+              <span>Log in</span>
+            </Link>
+          </li>
+        )}
 
-        <li className="flex-1">
-          <Link href={`/api/auth/logout`}>
-            <span>Log out</span>
-          </Link>
-        </li>
+        {user && (
+          <li className="flex-1">
+            <Link href={`/api/auth/logout`}>
+              <span>Log out</span>
+            </Link>
+          </li>
+        )}
 
-        <li className="flex-1">
-          <Profile />
-        </li>
+        {user && (
+          <li className="flex-1">
+            <Profile />
+          </li>
+        )}
 
         <li>
           <ThemeSwitcher />
