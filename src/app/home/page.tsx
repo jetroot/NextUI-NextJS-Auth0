@@ -2,11 +2,10 @@
 
 import RocketCard from "@/components/RocketCard";
 import SkeletonCard from "@/components/SkeletonCard";
-import { fetcher } from "@/fetching/fetcher";
-import useSWR from "swr";
+import { useLaunches } from "@/services/queries";
 
 const Home = () => {
-  const { data, error, isLoading } = useSWR("/launches", fetcher);
+  const { data, error, isLoading } = useLaunches();
 
   if (isLoading)
     return (
