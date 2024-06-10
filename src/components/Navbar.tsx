@@ -4,53 +4,82 @@ import Link from "next/link";
 import { ThemeSwitcher } from "./ThemeSwitcher";
 import Profile from "@/app/profile/page";
 import { useUser } from "@auth0/nextjs-auth0/client";
+import {
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
+  DropdownTrigger,
+  Navbar,
+  NavbarBrand,
+  NavbarContent,
+  NavbarItem,
+} from "@nextui-org/react";
+import { useRouter } from "next/navigation";
+import { AiOutlineLoading } from "react-icons/ai";
 
-const Navbar = () => {
-  const { user, error, isLoading } = useUser();
+const MyNavbar = () => {
+  const { user, isLoading } = useUser();
+  const router = useRouter();
+
+  const logout = () => {
+    router.push("/api/auth/logout");
+  };
 
   return (
-    <div className="bg-slate-50 px-2 dark:bg-black dark:text-white">
-      <ul className="flex items-center p-2">
-        <li className="w-1/2">
-          <Link href={`/`}>
-            <span className="font-bold">Logo</span>
+    <Navbar className="w-full" maxWidth="full">
+      <NavbarBrand>
+        <Link color="foreground" href="/">
+          <p className="font-bold dark:text-white">ACME</p>
+        </Link>
+      </NavbarBrand>
+
+      <NavbarContent className="hidden gap-4 sm:flex" justify="center">
+        <NavbarItem>
+          <Link color="foreground" href="/home" className="dark:text-white">
+            Home
           </Link>
-        </li>
+        </NavbarItem>
+      </NavbarContent>
 
-        <li className="flex-1">
-          <Link href={`/home`}>
-            <span>Home</span>
-          </Link>
-        </li>
-
-        {!user && (
-          <li className="flex-1">
-            <Link href={`/api/auth/login`}>
-              <span>Log in</span>
-            </Link>
-          </li>
-        )}
-
+      <NavbarContent as="div" justify="end">
         {user && (
-          <li className="flex-1">
-            <Link href={`/api/auth/logout`}>
-              <span>Log out</span>
+          <Dropdown className="dark:text-slate-300" placement="bottom-end">
+            <DropdownTrigger>
+              <Profile />
+            </DropdownTrigger>
+
+            <DropdownMenu aria-label="Profile Actions" variant="flat">
+              <DropdownItem key="profile" className="h-14 gap-2">
+                <p className="font-normal">Signed in as</p>
+                <p className="font-semibold">{user?.email}</p>
+              </DropdownItem>
+              <DropdownItem key="settings">My Settings</DropdownItem>
+              <DropdownItem key="team_settings">Team Settings</DropdownItem>
+              <DropdownItem key="analytics">Analytics</DropdownItem>
+              <DropdownItem key="system">System</DropdownItem>
+              <DropdownItem key="configurations">Configurations</DropdownItem>
+              <DropdownItem key="help_and_feedback">
+                <ThemeSwitcher />
+              </DropdownItem>
+              <DropdownItem key="logout" color="danger" onClick={logout}>
+                Log out
+              </DropdownItem>
+            </DropdownMenu>
+          </Dropdown>
+        )}
+
+        {!user && !isLoading && (
+          <NavbarItem>
+            <Link href={`/api/auth/login`} className="dark:text-white">
+              Log in
             </Link>
-          </li>
+          </NavbarItem>
         )}
 
-        {user && (
-          <li className="flex-1">
-            <Profile />
-          </li>
-        )}
-
-        <li>
-          <ThemeSwitcher />
-        </li>
-      </ul>
-    </div>
+        {isLoading && <AiOutlineLoading className="animate-spin" />}
+      </NavbarContent>
+    </Navbar>
   );
 };
 
-export default Navbar;
+export default MyNavbar;

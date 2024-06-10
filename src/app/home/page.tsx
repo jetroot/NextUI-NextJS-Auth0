@@ -1,13 +1,12 @@
 "use client";
 
-import BirdsCards from "@/components/BirdsCards";
+import RocketCard from "@/components/RocketCard";
 import SkeletonCard from "@/components/SkeletonCard";
 import { fetcher } from "@/fetching/fetcher";
 import useSWR from "swr";
 
 const Home = () => {
-  const { data, error, isLoading } = useSWR("/products", fetcher);
-  // console.log("data", data.photos);
+  const { data, error, isLoading } = useSWR("/launches", fetcher);
 
   if (isLoading)
     return (
@@ -22,7 +21,9 @@ const Home = () => {
 
   return (
     <div className="grid gap-2 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-      {data?.map((bird: any) => <BirdsCards key={bird.id} bird={bird} />)}
+      {data?.map((rocket: any) => (
+        <RocketCard key={rocket.flight_number} rocket={rocket} />
+      ))}
     </div>
   );
 };
