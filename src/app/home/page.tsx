@@ -6,6 +6,7 @@ import { useLaunches } from "@/services/queries";
 
 const Home = () => {
   const { data, error, isLoading } = useLaunches();
+  console.log('da', data)
 
   if (isLoading)
     return (
