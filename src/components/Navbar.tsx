@@ -76,7 +76,9 @@ const MyNavbar = () => {
           </NavbarItem>
         )}
 
-        {isLoading && <AiOutlineLoading className="animate-spin" />}
+        {isLoading && (
+          <AiOutlineLoading className="animate-spin dark:text-slate-100" />
+        )}
       </NavbarContent>
     </Navbar>
   );
