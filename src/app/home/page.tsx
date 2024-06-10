@@ -3,10 +3,10 @@
 import RocketCard from "@/components/RocketCard";
 import SkeletonCard from "@/components/SkeletonCard";
 import { useLaunches } from "@/services/queries";
+import toast from "react-hot-toast";
 
 const Home = () => {
   const { data, error, isLoading } = useLaunches();
-  console.log('da', data)
 
   if (isLoading)
     return (
@@ -17,7 +17,7 @@ const Home = () => {
       </div>
     );
 
-  if (error) return <p>{error.message}</p>;
+  if (error) return toast.error(error.message); //<p className="dark:text-slate-100">{error.message}</p>;
 
   return (
     <div className="grid gap-2 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">

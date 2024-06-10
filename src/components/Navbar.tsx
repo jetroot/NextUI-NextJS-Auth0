@@ -13,9 +13,9 @@ import {
   NavbarBrand,
   NavbarContent,
   NavbarItem,
+  Spinner,
 } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
-import { AiOutlineLoading } from "react-icons/ai";
 
 const MyNavbar = () => {
   const { user, isLoading } = useUser();
@@ -77,7 +77,8 @@ const MyNavbar = () => {
         )}
 
         {isLoading && (
-          <AiOutlineLoading className="animate-spin dark:text-slate-100" />
+          // <AiOutlineLoading className="animate-spin dark:text-slate-100" />
+          <Spinner color="default" labelColor="foreground" />
         )}
       </NavbarContent>
     </Navbar>

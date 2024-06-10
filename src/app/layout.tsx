@@ -4,6 +4,7 @@ import "./globals.css";
 import { Providers } from "./providers";
 import { UserProvider } from "@auth0/nextjs-auth0/client";
 import FetcherProvider from "@/providers/FetcherProvider";
+import { Toaster } from "react-hot-toast";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,6 +22,15 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <UserProvider>
         <body className={inter.className}>
+          <Toaster
+            position="bottom-right"
+            toastOptions={{
+              className: "dark:bg-[#27272A] bg-[#27272A]",
+              style: {
+                color: "#A1A1AA",
+              },
+            }}
+          />
           <FetcherProvider>
             <Providers>{children}</Providers>
           </FetcherProvider>

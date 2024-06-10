@@ -1,6 +1,13 @@
 import { Button, Card, CardFooter, CardHeader, Image } from "@nextui-org/react";
+import toast from "react-hot-toast";
 
 const RocketCard = ({ rocket }: any) => {
+  const getRocketDetails = () => {
+    toast(rocket.details, {
+      icon: <Image src={rocket.links.mission_patch} alt="Rocket Icon" />,
+    });
+  };
+
   return (
     <Card isFooterBlurred className="h-[300px] w-full">
       <CardHeader className="absolute top-1 z-10 flex-col items-start">
@@ -35,8 +42,7 @@ const RocketCard = ({ rocket }: any) => {
             <p className="text-tiny text-white/60">{rocket.mission_name}</p>
           </div>
         </div>
-        <Button radius="full" size="sm">
-          {/* Get App */}
+        <Button radius="full" size="sm" onClick={getRocketDetails}>
           {rocket.rocket.rocket_type}
         </Button>
       </CardFooter>
