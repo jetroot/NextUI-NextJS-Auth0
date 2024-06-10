@@ -1,6 +1,8 @@
-This project is a simple single-page application with support for both dark and light themes. It's built using [Next.js](https://nextjs.org/) and utilizes the styling framework [TailWind](https://tailwindcss.com/), as well as components from [NextUI](https://nextui.org/) and authentication services provided by [Auth0](https://auth0.com/).
+This project is a simple single-page application with support for both dark and light themes. It's built using [Next.js](https://nextjs.org/) and utilizes the styling framework [TailWind](https://tailwindcss.com/), as well as components from [NextUI](https://nextui.org/), [SWR](https://swr.vercel.app/) React Hook for fetching data and authentication services provided by [Auth0](https://auth0.com/).
 
 Also it is preconfigured with Prettier + Eslint + Husky for formatting and linting.
+
+![screen shot 1](/public/sc_1.png)
 
 ## Install
 
