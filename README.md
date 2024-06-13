@@ -43,6 +43,8 @@ There are a couple of steps you need to take to implement Auth0 in your project.
 
 ## What is required ?
 
-The only thing is required here is `Configure Auth0` step, sure if you want to use Authentication feature from Auth0. All the other steps i just wrote them here just in case you want to add them to your project, `THEY ARE NOT REQUIRED HERE` to run the project.
+1. `The Backend`: The build built using NestJS, you can find it [here](https://github.com/jetroot/NextUI-NextJS-Auth0-Backend).
+
+2. `.env`: Use your own .env variables
 
 Have a nice day!
