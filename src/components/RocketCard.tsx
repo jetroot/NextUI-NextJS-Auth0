@@ -43,7 +43,7 @@ const RocketCard = ({ rocket }: any) => {
           </div>
         </div>
         <Button radius="full" size="sm" onClick={getRocketDetails}>
-          {rocket.rocket.rocket_type}
+          Get info
         </Button>
       </CardFooter>
     </Card>
